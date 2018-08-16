@@ -8,3 +8,7 @@ from django.views.generic import TemplateView
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'FUEL/index.html', context=None)
+		
+class FormView(TemplateView):
+    def get (self, request, **kwargs):
+        return render(request, 'FUEL/forms-basic.html', context=None)
