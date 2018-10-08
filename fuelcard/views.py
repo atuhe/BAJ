@@ -5,10 +5,15 @@ from django.views.generic import TemplateView
 
 	
 	# Create your views here.
-class HomePageView(TemplateView):
-    def get(self, request, **kwargs):
-        return render(request, 'FUEL/index.html', context=None)
+def index(request):
+	return render(request, 'index.html', {})
 		
-class FormView(TemplateView):
-    def get (self, request, **kwargs):
-        return render(request, 'FUEL/forms-basic.html', context=None)
+def about(request):
+	return render(request, 'forms-basic.html', {})
+
+def report(request):
+	return render(request, 'report.html', {})
+
+def form(request):
+	return render(request, 'forms-advanced.html', {})
+

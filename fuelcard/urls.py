@@ -1,10 +1,11 @@
 # fuelcard/urls.py
 
-
 from django.conf.urls import url
 from fuelcard import views
 
 urlpatterns = [
-    url(r'^$', views.HomePageView.as_view()),
-    url(r'^$', views.FormView.as_view()),
+path('', views.index, name='index'),
+path('about/', views.about, name='about'),
+path('report/', views.about, name='report'),
+path('form/', vies.about, name='form'),
 ]
