@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib import admin
-from django.views.generic.base import TemplateView
+from fuelcard.views import HomeView, PumpView, ReportView
+
+admin.site.site_header = "BAJ System admin"
+admin.site.site_title = 'BAJ Service Stations Limited'
+
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', HomeView.as_view(), name='index'),
     path('admin/', admin.site.urls),
-    path('about/', TemplateView.as_view(template_name='forms-basic.html'), name='forms-basic'),
-    path('report/', TemplateView.as_view(template_name='report.html'), name='report'),
-    path('form/', TemplateView.as_view(template_name='forms-advanced.html'), name='form')
+    # path('about/', TemplateView.as_view(template_name='report2.html'), name='forms-basic'),
+    path('report/', ReportView.as_view(), name='report'),
+    # path('form/', TemplateView.as_view(template_name='forms-advanced.html'), name='form')
 
 ]

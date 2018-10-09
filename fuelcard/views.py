@@ -1,17 +1,40 @@
-from django.shortcuts import render
+from django.views.generic import CreateView, TemplateView
+from fuelcard.forms import PumpForm, ReportForm
 
 
-def index(request):
-    return render(request, 'index.html', {})
+class HomeView(TemplateView):
+    template_name = 'index.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
 
 
-def about(request):
-    return render(request, 'forms-basic.html', {})
+class PumpView(CreateView):
+    form_class = PumpForm
+    template_name = 'report2.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        return super().get(request, *args, **kwargs)
 
 
-def report(request):
-    return render(request, 'report.html', {})
+class ReportView(CreateView):
+    form_class = ReportForm
+    template_name = 'report2.html'
 
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        return super().get(request, *args, **kwargs)
 
-def form(request):
-    return render(request, 'forms-advanced.html', {})
+#
+# def about(request):
+#     return render(request, 'report2.html', {})
+#
+#
+# def report(request):
+#     return render(request, 'report.html', {})
+#
+#
+# def form(request):
+#     return render(request, 'forms-advanced.html', {})

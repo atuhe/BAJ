@@ -10,12 +10,19 @@ class Pump(models.Model):
 
     pump_name = models.CharField(choices=CHOICES_PUMP_NAME, max_length=20)
     pump_category = models.CharField(choices=CHOICES_PRODUCT_TYPE, max_length=20)
+    station_name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.pump_name
+
+
+class Report(models.Model):
+    date_created = models.DateTimeField(verbose_name=None)
+    pump = models.ForeignKey(Pump, on_delete=models.CASCADE)
     opening_reading = models.FloatField()
     closing_reading = models.FloatField()
     transfers = models.FloatField()
+    net_sales = models.FloatField()
 
-    def meter_movement(self):
-        return self.closing_reading - self.opening_reading
-
-    def net_sales(self):
-        return self.meter_movement() - self.transfers
+    def __str__(self):
+        return self.pump
