@@ -1,4 +1,4 @@
-"""REPORT URL Configuration
+"""baj URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -18,10 +18,10 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-	path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
     path('admin/', admin.site.urls),
     path('about/', TemplateView.as_view(template_name='forms-basic.html'), name='forms-basic'),
     path('report/', TemplateView.as_view(template_name='report.html'), name='report'),
     path('form/', TemplateView.as_view(template_name='forms-advanced.html'), name='form')
-    
+
 ]
