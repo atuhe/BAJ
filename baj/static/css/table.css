@@ -1,0 +1,9 @@
+.bord{
+border:1px solid black;
+border-collapse:collapse;
+}
+
+#cell{
+border:1px solid red;
+}
+

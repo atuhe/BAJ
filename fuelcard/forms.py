@@ -47,21 +47,25 @@ class ReportForm(ModelForm):
                     'class': 'standardSelect',
                     'data-placeholder': 'Select Pump Name',
                     'tabindex': '1',
+                    'id': 'pumpId'
                 }
             ),
             'opening_reading': NumberInput(
                 attrs={
-                    'class': 'form-control mb-2 mr-sm-2'
+                    'class': 'form-control mb-2 mr-sm-2',
+                    'id': 'openingReadingId'
                 }
             ),
             'closing_reading': NumberInput(
                 attrs={
-                    'class': 'form-control mb-2 mr-sm-2'
+                    'class': 'form-control mb-2 mr-sm-2',
+                    'id': 'closingReadingId'
                 }
             ),
             'transfers': NumberInput(
                 attrs={
-                    'class': 'form-control mb-2 mr-sm-2'
+                    'class': 'form-control mb-2 mr-sm-2',
+                    'id': 'transfersId'
                 }
             )
         }

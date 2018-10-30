@@ -5,8 +5,8 @@
 {% block content %}
     <div class="content mt-3">
         <div class="animated fadeIn">
-            <form>
-                {% csrf_token %}
+{#            <form name="resultForm">#}
+{#                {% csrf_token %}#}
                 <div class="row">
                     <div class="col-xs-2 col-sm-2">
                         <div class="card-header">
@@ -31,14 +31,7 @@
                         <div class="card-body">
                             {{ form.closing_reading }}
                         </div>
-                    </div>
-                    <div class="col-xs-2 col-sm-2">
-                        <div class="card-header">
-                            <small>Meter Movement</small>
-                        </div>
-                        <div class="card-body">
-                            <input type="text" id="meterMovement" name="meter-movement" class="form-control" disabled>
-                        </div>
+                        <input type="hidden" id="meterMovement" name="meter-movement">
                     </div>
                     <div class="col-xs-2 col-sm-2">
                         <div class="card-header">
@@ -50,16 +43,37 @@
                     </div>
                     <div class="col-xs-2 col-sm-2">
                         <div class="card-header">
-                            <small>Net Sales</small>
+                            <small>Action</small>
                         </div>
                         <div class="card-body">
-                            <input type="text" id="netSales" name="net-sales" class="form-control" disabled>
+                            <button type="submit" id="addBtn" class="btn btn-primary btn-sm">
+                          Add
+                        </button>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <div class="card-header">
+                            <small>Action</small>
+                        </div>
+                        <div class="card-body">
+                            <button id="cancelBtn" type="reset" class="btn btn-dark btn-sm">
+                                Cancel
+                            </button>
                         </div>
                     </div>
                 </div>
-            </form>
+{#            </form>#}
         </div>
     </div>
+
+<script type="text/javascript">
+
+    $('#addBtn').click(function () {
+        var opening_reading = $('#openingReadingId').val();
+        alert(opening_reading);
+    })
+</script>
+
 {#<table id="table" height="20%"  class=" table table-bordered" >#}
 {#  <thead class="black white-text">#}
 {#   <small>#}
