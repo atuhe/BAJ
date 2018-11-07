@@ -3,7 +3,7 @@ from fuelcard.forms import PumpForm, ReportForm
 
 
 class HomeView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'home.html'
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)

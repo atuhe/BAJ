@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load staticfiles %}
 
@@ -66,12 +65,17 @@
         </div>
     </div>
 
+
 <script type="text/javascript">
 
-    $('#addBtn').click(function () {
+$(document).ready( function() {
+
+    $("#addBtn").click( function(event) {
         var opening_reading = $('#openingReadingId').val();
-        alert(opening_reading);
-    })
+        alert("You clicked the button using JQuery!");
+    });
+});
+
 </script>
 
 {#<table id="table" height="20%"  class=" table table-bordered" >#}
