@@ -24,10 +24,9 @@ admin.site.site_title = 'BAJ Service Stations Limited'
 
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='index'),
+    path('', HomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
-    # path('about/', TemplateView.as_view(template_name='report2.html'), name='forms-basic'),
     path('report/', ReportView.as_view(), name='report'),
-    # path('form/', TemplateView.as_view(template_name='forms-advanced.html'), name='form')
+    path('pumps/', PumpView.as_view(), name='pumps'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

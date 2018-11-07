@@ -1,5 +1,6 @@
-from django.views.generic import CreateView, TemplateView
-from fuelcard.forms import PumpForm, ReportForm
+from django.views.generic import CreateView, TemplateView, ListView
+from fuelcard.forms import ReportForm
+from fuelcard.models import Pump
 
 
 class HomeView(TemplateView):
@@ -10,9 +11,9 @@ class HomeView(TemplateView):
         return self.render_to_response(context)
 
 
-class PumpView(CreateView):
-    form_class = PumpForm
-    template_name = 'report2.html'
+class PumpView(ListView):
+    template_name = 'pumps.html'
+    model = Pump
 
     def get(self, request, *args, **kwargs):
         self.object = None
@@ -21,20 +22,8 @@ class PumpView(CreateView):
 
 class ReportView(CreateView):
     form_class = ReportForm
-    template_name = 'report2.html'
+    template_name = 'report.html'
 
     def get(self, request, *args, **kwargs):
         self.object = None
         return super().get(request, *args, **kwargs)
-
-#
-# def about(request):
-#     return render(request, 'report2.html', {})
-#
-#
-# def report(request):
-#     return render(request, 'report.html', {})
-#
-#
-# def form(request):
-#     return render(request, 'forms-advanced.html', {})

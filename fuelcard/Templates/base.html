@@ -1,2 +1,45 @@
 {% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BAJ oil stations">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="John Ashaba">
 
+    <title>Baj</title>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+    <a href="{% url 'home' %}" class="w3-bar-item w3-button">Home</a>
+    <a href="{% url 'pumps' %}" class="w3-bar-item w3-button">Manage Pumps</a>
+    <a href="{% url 'report' %}" class="w3-bar-item w3-button">Manage Report</a>
+</div>
+
+<div id="main">
+
+    <div class="w3-teal">
+        <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+        <div class="w3-container">
+            <h1>BAJ Stations</h1>
+        </div>
+    </div>
+
+<div id="main-content">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+</div>
+
+</body>
+<script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+</html>

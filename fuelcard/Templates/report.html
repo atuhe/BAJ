@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
 
 {% block content %}
     <div class="content mt-3">
@@ -70,7 +69,7 @@
 
 $(document).ready( function() {
 
-    $("#addBtn").click( function(event) {
+    $("#addBtn").click( function() {
         var opening_reading = $('#openingReadingId').val();
         alert("You clicked the button using JQuery!");
     });
