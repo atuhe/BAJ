@@ -17,10 +17,11 @@ class Pump(models.Model):
 
 
 class Report(models.Model):
-    date_created = models.DateTimeField(verbose_name=None)
+    date_created = models.DateTimeField(auto_now_add=True)
     pump = models.ForeignKey(Pump, on_delete=models.CASCADE)
     opening_reading = models.FloatField()
     closing_reading = models.FloatField()
+    meter_movement = models.FloatField()
     transfers = models.FloatField()
     net_sales = models.FloatField()
 

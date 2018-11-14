@@ -35,13 +35,8 @@ class PumpForm(ModelForm):
 class ReportForm(ModelForm):
     class Meta:
         model = Report
-        fields = ['date_created', 'pump', 'opening_reading', 'closing_reading', 'transfers', 'net_sales']
+        fields = ['pump', 'opening_reading', 'closing_reading', 'transfers', 'net_sales']
         widgets = {
-            'date_created': DateTimeInput(
-                attrs={
-
-                }
-            ),
             'pump': Select(
                 attrs={
                     'class': 'standardSelect',

@@ -70,6 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'baj.wsgi.application'
 
+CSRF_COOKIE_HTTPONLY = True
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
