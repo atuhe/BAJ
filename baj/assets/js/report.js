@@ -21,8 +21,9 @@ function addButton() {
 function saveReport(formData) {
     let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
     $.ajax({
-            type: "POST",
-            url: "/report/",
+        type: "POST",
+        url: "/report/",
+        dataType: "json",
             data: {
                 pump: formData.pump,
                 openingReading: formData.openingReading,
@@ -33,9 +34,8 @@ function saveReport(formData) {
                 csrfmiddlewaretoken: csrftoken
             },
             success:function(data){
-                console.log(formData.closingReading)
                 // $("textarea#assessment").val('').end();
-                // window.location.reload(true);
+                window.location.reload(true);
             }
         });
 

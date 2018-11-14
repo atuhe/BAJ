@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
     <form action="report.html">
@@ -14,6 +15,28 @@
     <button id="cancelBtn" type="reset" class="btn btn-dark btn-sm">Cancel</button>
     </form>
 
+<table>
+    <tr>
+    <th>Date</th>
+    <th>Pump</th>
+    <th>Opening Reading</th>
+      <th>Closing Reading</th>
+      <th>Meter Movement</th>
+      <th>Transfers</th>
+      <th>Net Sales</th>
+  </tr>
+    {% for report in object_list %}
+  <tr>
+    <td>{{ report.date_created|naturaltime }}</td>
+    <td>{{ report.pump }}</td>
+    <td>{{ report.opening_reading }}</td>
+  <td>{{ report.closing_reading }}</td>
+  <td>{{ report.meter_movement }}</td>
+  <td>{{ report.transfers }}</td>
+  <td>{{ report.net_sales }}</td>
+  </tr>
+    {% endfor %}
+</table>
 
 <table id="table" height="20%"  class=" table table-bordered" >
   <thead class="black white-text">
