@@ -6,6 +6,8 @@ from fuelcard.forms import ReportForm
 from fuelcard.models import Pump, Report
 from fuelcard.serializers import ReportSerializer
 
+from datetime import datetime
+
 
 class HomeView(TemplateView):
     template_name = 'home.html'
@@ -27,12 +29,19 @@ class PumpView(ListView):
 class ReportView(ListView, CreateView):
     model = Report
     form_class = ReportForm
-    ordering = ['-id']
     template_name = 'report.html'
 
     def get(self, request, *args, **kwargs):
         self.object = None
         return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+
+        """Fetches reports for that particular date"""
+
+        day_report = super(ReportView, self).get_queryset()
+        day_report = day_report.filter(date_created__date=datetime.today()).order_by('-id')
+        return day_report
 
     def post(self, request, *args, **kwargs):
         self.object = None
