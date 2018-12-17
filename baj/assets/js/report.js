@@ -22,7 +22,7 @@ function saveReport(formData) {
     let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
     $.ajax({
         type: "POST",
-        url: "/report/",
+        url: "/readings/",
         dataType: "json",
             data: {
                 pump: formData.pump,
@@ -39,4 +39,42 @@ function saveReport(formData) {
             }
         });
 
+}
+
+function tankReadingsBtn() {
+    const product = document.querySelector('#productId').value;
+    const openingStock = parseFloat(document.getElementById('openingStock').value);
+    const closingStock = parseFloat(document.getElementById('closingStock').value);
+    const productReceived = parseFloat(document.getElementById('productReceived').value);
+    const productReturned = parseFloat(document.getElementById('productReturned').value);
+
+    let formValues = {};
+    formValues.product = product;
+    formValues.openingStock = openingStock;
+    formValues.closingStock = closingStock;
+    formValues.productReceived = productReceived;
+    formValues.productReturned = productReturned;
+
+    saveTankReadings(formValues)
+}
+
+function saveTankReadings(formData) {
+    let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    $.ajax({
+        type: "POST",
+        url: "/readings/tank/",
+        dataType: "json",
+            data: {
+                product: formData.product,
+                openingStock: formData.openingStock,
+                closingStock: formData.closingStock,
+                productReceived: formData.productReceived,
+                productReturned: formData.productReturned,
+                csrfmiddlewaretoken: csrftoken
+            },
+            success:function(data){
+                // $("textarea#assessment").val('').end();
+                window.location.reload(true);
+            }
+        });
 }

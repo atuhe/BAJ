@@ -39,7 +39,7 @@ class ReportForm(ModelForm):
         widgets = {
             'pump': Select(
                 attrs={
-                    'class': 'standardSelect',
+                    'class': 'select2_demo_3 form-control',
                     'data-placeholder': 'Select Pump Name',
                     'tabindex': '1',
                     'id': 'pumpId'
@@ -47,20 +47,66 @@ class ReportForm(ModelForm):
             ),
             'opening_reading': NumberInput(
                 attrs={
-                    'class': 'form-control mb-2 mr-sm-2',
-                    'id': 'openingReadingId'
+                    'class': 'form-control',
+                    'id': 'openingReadingId',
+                    'required': 'required'
                 }
             ),
             'closing_reading': NumberInput(
                 attrs={
-                    'class': 'form-control mb-2 mr-sm-2',
-                    'id': 'closingReadingId'
+                    'class': 'form-control',
+                    'id': 'closingReadingId',
+                    'required': 'required'
                 }
             ),
             'transfers': NumberInput(
                 attrs={
-                    'class': 'form-control mb-2 mr-sm-2',
-                    'id': 'transfersId'
+                    'class': 'form-control',
+                    'id': 'transfersId',
+                    'required': 'required'
+                }
+            )
+        }
+
+
+class TankForm(ModelForm):
+    class Meta:
+        model = Tank
+        fields = ['product_category', 'opening_stock', 'product_received', 'product_returned', 'closing_stock']
+        widgets = {
+            'product_category': Select(
+                attrs={
+                    'class': 'select2_demo_3 form-control',
+                    'data-placeholder': 'Select Product',
+                    'id': 'productId'
+                }
+            ),
+            'opening_stock': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'openingStock',
+                    'required': 'required'
+                }
+            ),
+            'product_received': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'productReceived',
+                    'required': 'required'
+                }
+            ),
+            'product_returned': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'productReturned',
+                    'required': 'required'
+                }
+            ),
+            'closing_stock': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'closingStock',
+                    'required': 'required'
                 }
             )
         }

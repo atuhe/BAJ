@@ -27,3 +27,22 @@ class Report(models.Model):
 
     def __str__(self):
         return self.pump
+
+
+class Tank(models.Model):
+    CHOICES_PRODUCT = (("PMS", "PMS"), ("TRUCK", "TRUCK"), ("AGO", "AGO"), ("BIK", "BIK"))
+    date_created = models.DateTimeField(auto_now_add=True)
+    product_category = models.CharField(choices=CHOICES_PRODUCT, max_length=10)
+    opening_stock = models.FloatField()
+    product_received = models.FloatField()
+    product_returned = models.FloatField()
+    closing_stock = models.FloatField()
+
+    def total_stock(self):
+        return self.opening_stock + self.product_received + self.product_returned
+
+    def tank_sales(self):
+        return self.total_stock() - self.closing_stock
+
+    def __str__(self):
+        return self.product_category
