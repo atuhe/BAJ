@@ -47,6 +47,9 @@
     <!-- forms CSS
 		============================================ -->
     <link rel="stylesheet" href="{% static 'css/form/all-type-forms.css' %}">
+    <!-- datapicker CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/datapicker/datepicker3.css' %}">
     <!-- switcher CSS
 		============================================ -->
     <link rel="stylesheet" href="{% static 'css/switcher/color-switcher.css' %}">
@@ -86,7 +89,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="admin-logo">
-                        <a href="#"><img src="img/logo/log.png" alt="" />
+{#                        <a href="#"><img src="{% static 'images/baj.jpeg' %}" alt="" />#}
                         </a>
                     </div>
                 </div>
@@ -282,6 +285,11 @@
     <script src="{% static 'js/data-table/bootstrap-table-resizable.js' %}"></script>
     <script src="{% static 'js/data-table/colResizable-1.5.source.js' %}"></script>
     <script src="{% static 'js/data-table/bootstrap-table-export.js' %}"></script>
+
+    <!-- datapicker JS
+		============================================ -->
+    <script src="{% static 'js/datapicker/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'js/datapicker/datepicker-active.js' %}"></script>
     <!-- switcher JS
 		============================================ -->
     <script src="{% static 'js/switcher/styleswitch.js' %}"></script>

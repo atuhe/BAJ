@@ -1,6 +1,8 @@
+import logging
 from django.views.generic import CreateView, TemplateView, ListView
-from rest_framework.response import Response
 from django.http import JsonResponse
+from django.db.models import Q
+from django.db.models import Sum
 from rest_framework import status
 from fuelcard.forms import ReportForm, TankForm
 from fuelcard.models import Pump, Report, Tank
@@ -31,9 +33,50 @@ class ReadingView(ListView, CreateView):
     form_class = ReportForm
     template_name = 'readings.html'
 
-    def get(self, request, *args, **kwargs):
-        self.object = None
-        return super().get(request, *args, **kwargs)
+    # def get(self, request, *args, **kwargs):
+    #     self.object = None
+    #     return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+
+        """Fetches Meter readings for that particular date"""
+
+        day_report = super(ReadingView, self).get_queryset()
+        day_report = day_report.filter(date_created__date=datetime.today()).order_by('-id')
+        return day_report
+
+    def get_context_data(self, **kwargs):
+        try:
+            pms1 = Q(pump__pump_name__contains='pms1')
+            pms2 = Q(pump__pump_name__contains='pms2')
+            pms3 = Q(pump__pump_name__contains='pms3')
+            kwargs['pms_sales'] = Report.objects.filter(pms1 & pms2 & pms3).aggregate(Sum('net_sales'))
+            kwargs['pms'] = Tank.objects.get(product_category='PMS')
+        except Exception as e:
+            logging.error(e)
+        try:
+            kwargs['truck'] = Tank.objects.get(product_category='TRUCK')
+        except Exception as e:
+            logging.error(e)
+        try:
+            ago1 = Q(pump__pump_name__contains='ago1')
+            ago2 = Q(pump__pump_name__contains='ago2')
+            ago3 = Q(pump__pump_name__contains='ago3')
+            kwargs['ago_sales'] = Report.objects.filter(ago1 & ago2 & ago3).aggregate(Sum('net_sales'))
+            kwargs['ago'] = Tank.objects.get(product_category='AGO')
+        except Exception as e:
+            logging.error(e)
+        try:
+            bik1 = Q(pump__pump_name__contains='bik1')
+            bik2 = Q(pump__pump_name__contains='bik2')
+            bik3 = Q(pump__pump_name__contains='bik3')
+            bik_sales = Report.objects.filter(bik1 & bik2 & bik3).aggregate(Sum('net_sales'))
+            kwargs['bik_sales'] = bik_sales
+            kwargs['bik'] = Tank.objects.get(product_category='BIK')
+            print(bik_sales)
+        except Exception as e:
+            logging.error(e)
+        return kwargs
 
 
 class TankReadingsView(ListView, CreateView):

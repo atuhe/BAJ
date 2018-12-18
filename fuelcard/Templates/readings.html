@@ -1,2 +1,199 @@
 {% extends 'base.html' %}
 {% load humanize %}
+
+{% block content %}
+
+    <!-- Breadcome start-->
+    <div class="breadcome-area mg-t-40 mg-b-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcome-list shadow-reset">
+                        <div class="breadcome-heading">
+                            <h2>Readings</h2>
+                        </div>
+                        <div class="date-picker-inner">
+                            <div class="form-group data-custon-pick" id="data_1">
+                                <label>Select date</label>
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" id="dataValue" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcome End-->
+
+    <!-- Static Table Start -->
+    <div class="data-table-area mg-b-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sparkline13-list shadow-reset">
+                        <div class="sparkline13-hd">
+                            <div class="main-sparkline13-hd">
+                                <h1>Meter <span class="table-project-n">Data</span></h1>
+                                <div class="sparkline13-outline-icon">
+                                    <span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                                    <span><i class="fa fa-wrench"></i></span>
+                                    <span class="sparkline13-collapse-close"><i class="fa fa-times"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sparkline13-graph">
+                            <div class="datatable-dashv1-list custom-datatable-overright">
+                                <div id="toolbar">
+                                    <select class="form-control">
+                                        <option value="">Export Basic</option>
+                                        <option value="all">Export All</option>
+                                        <option value="selected">Export Selected</option>
+                                    </select>
+                                </div>
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="true"></th>
+                                            <th data-field="id">ID</th>
+                                            <th data-field="meter" data-editable="true">Meter Label</th>
+                                            <th data-field="time" data-editable="true">Time</th>
+                                            <th data-field="opening_reading" data-editable="true">Opening Readings</th>
+                                            <th data-field="closing_reading" data-editable="true">Closing Readings</th>
+                                            <th data-field="meter_movement" data-editable="true">Meter Movement</th>
+                                            <th data-field="transfers">Transfers</th>
+                                            <th data-field="net_sales" data-editable="true">Net Sales</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for report in object_list %}
+                                        <tr>
+                                            <td></td>
+                                            <td>{{ report.id }}</td>
+                                            <td>{{ report.pump }}</td>
+                                            <td>{{ report.date_created }}</td>
+                                            <td>{{ report.opening_reading }}</td>
+                                            <td>{{ report.closing_reading }}</td>
+                                            <td>{{ report.meter_movement }}</td>
+                                            <td>{{ report.transfers }}</td>
+                                            <td>{{ report.net_sales }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Static Table End -->
+
+    <!-- Static Table Start -->
+    <div class="data-table-area mg-b-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sparkline13-list shadow-reset">
+                        <div class="sparkline13-hd">
+                            <div class="main-sparkline13-hd">
+                                <h1>Tank <span class="table-project-n">Readings</span></h1>
+                                <div class="sparkline13-outline-icon">
+                                    <span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                                    <span><i class="fa fa-wrench"></i></span>
+                                    <span class="sparkline13-collapse-close"><i class="fa fa-times"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sparkline13-graph">
+                            <div class="datatable-dashv1-list custom-datatable-overright">
+                                <table class="table hover-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>PMS</th>
+                                            <th>TRUCK</th>
+                                            <th>AGO</th>
+                                            <th>BIK</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Opening dip Stock</td>
+                                            <td>{{ pms.opening_stock }}</td>
+                                            <td>{{ truck.opening_stock }}</td>
+                                            <td>{{ ago.opening_stock }}</td>
+                                            <td>{{ bik.opening_stock }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product Receipt</td>
+                                            <td>{{ pms.product_received }}</td>
+                                            <td>{{ truck.product_received }}</td>
+                                            <td>{{ ago.product_received }}</td>
+                                            <td>{{ bik.product_received }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RTT</td>
+                                            <td>{{ pms.product_returned }}</td>
+                                            <td>{{ truck.product_returned }}</td>
+                                            <td>{{ ago.product_returned }}</td>
+                                            <td>{{ bik.product_returned }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Stock</td>
+                                            <td>{{ pms.total_stock }}</td>
+                                            <td>{{ truck.total_stock }}</td>
+                                            <td>{{ ago.total_stock }}</td>
+                                            <td>{{ bik.total_stock }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Closing Dip Stock</td>
+                                            <td>{{ pms.closing_stock }}</td>
+                                            <td>{{ truck.closing_stock }}</td>
+                                            <td>{{ ago.closing_stock }}</td>
+                                            <td>{{ bik.closing_stock }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tank Dip Sales</td>
+                                            <td>{{ pms.tank_sales }}</td>
+                                            <td>{{ truck.tank_sales }}</td>
+                                            <td>{{ ago.tank_sales }}</td>
+                                            <td>{{ bik.tank_sales }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Meter Sales</td>
+                                            <td>{{ pms_sales }}</td>
+                                            <td></td>
+                                            <td>{{ ago_sales }}</td>
+                                            <td>{{ bik_sales }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Daily Variations</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cummulative Variations</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Static Table End -->
+
+
+{% endblock %}
