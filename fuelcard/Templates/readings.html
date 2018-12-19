@@ -74,11 +74,11 @@
                                             <td>{{ report.id }}</td>
                                             <td>{{ report.pump }}</td>
                                             <td>{{ report.date_created }}</td>
-                                            <td>{{ report.opening_reading }}</td>
-                                            <td>{{ report.closing_reading }}</td>
-                                            <td>{{ report.meter_movement }}</td>
-                                            <td>{{ report.transfers }}</td>
-                                            <td>{{ report.net_sales }}</td>
+                                            <td>{{ report.opening_reading | intcomma }}</td>
+                                            <td>{{ report.closing_reading | intcomma }}</td>
+                                            <td>{{ report.meter_movement | intcomma }}</td>
+                                            <td>{{ report.transfers | intcomma }}</td>
+                                            <td>{{ report.net_sales | intcomma }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -123,59 +123,59 @@
                                     <tbody>
                                         <tr>
                                             <td>Opening dip Stock</td>
-                                            <td>{{ pms.opening_stock }}</td>
-                                            <td>{{ truck.opening_stock }}</td>
-                                            <td>{{ ago.opening_stock }}</td>
-                                            <td>{{ bik.opening_stock }}</td>
+                                            <td>{{ pms.opening_stock | intcomma }}</td>
+                                            <td>{{ truck.opening_stock | intcomma }}</td>
+                                            <td>{{ ago.opening_stock | intcomma }}</td>
+                                            <td>{{ bik.opening_stock | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Product Receipt</td>
-                                            <td>{{ pms.product_received }}</td>
-                                            <td>{{ truck.product_received }}</td>
-                                            <td>{{ ago.product_received }}</td>
-                                            <td>{{ bik.product_received }}</td>
+                                            <td>{{ pms.product_received | intcomma }}</td>
+                                            <td>{{ truck.product_received | intcomma }}</td>
+                                            <td>{{ ago.product_received | intcomma }}</td>
+                                            <td>{{ bik.product_received | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>RTT</td>
-                                            <td>{{ pms.product_returned }}</td>
-                                            <td>{{ truck.product_returned }}</td>
-                                            <td>{{ ago.product_returned }}</td>
-                                            <td>{{ bik.product_returned }}</td>
+                                            <td>{{ pms.product_returned | intcomma }}</td>
+                                            <td>{{ truck.product_returned | intcomma }}</td>
+                                            <td>{{ ago.product_returned | intcomma }}</td>
+                                            <td>{{ bik.product_returned | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Total Stock</td>
-                                            <td>{{ pms.total_stock }}</td>
-                                            <td>{{ truck.total_stock }}</td>
-                                            <td>{{ ago.total_stock }}</td>
-                                            <td>{{ bik.total_stock }}</td>
+                                            <td>{{ pms.total_stock | intcomma }}</td>
+                                            <td>{{ truck.total_stock | intcomma }}</td>
+                                            <td>{{ ago.total_stock | intcomma }}</td>
+                                            <td>{{ bik.total_stock | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Closing Dip Stock</td>
-                                            <td>{{ pms.closing_stock }}</td>
-                                            <td>{{ truck.closing_stock }}</td>
-                                            <td>{{ ago.closing_stock }}</td>
-                                            <td>{{ bik.closing_stock }}</td>
+                                            <td>{{ pms.closing_stock | intcomma }}</td>
+                                            <td>{{ truck.closing_stock | intcomma }}</td>
+                                            <td>{{ ago.closing_stock | intcomma }}</td>
+                                            <td>{{ bik.closing_stock | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tank Dip Sales</td>
-                                            <td>{{ pms.tank_sales }}</td>
-                                            <td>{{ truck.tank_sales }}</td>
-                                            <td>{{ ago.tank_sales }}</td>
-                                            <td>{{ bik.tank_sales|intcomma }}</td>
+                                            <td>{{ pms.tank_sales | intcomma }}</td>
+                                            <td>{{ truck.tank_sales | intcomma }}</td>
+                                            <td>{{ ago.tank_sales | intcomma }}</td>
+                                            <td>{{ bik.tank_sales | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Meter Sales</td>
-                                            <td>{{ pms_sales }}</td>
+                                            <td>{{ pms_sales | intcomma }}</td>
                                             <td></td>
-                                            <td>{{ ago_sales }}</td>
-                                            <td>{{ bik_sales }}</td>
+                                            <td>{{ ago_sales | intcomma }}</td>
+                                            <td>{{ bik_sales | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Daily Variations</td>
-                                            <td>{{ pms_daily_variations }}</td>
+                                            <td>{{ pms_daily_variations | intcomma }}</td>
                                             <td></td>
-                                            <td>{{ ago_daily_variations }}</td>
-                                            <td>{{ bik_daily_variations }}</td>
+                                            <td>{{ ago_daily_variations | intcomma }}</td>
+                                            <td>{{ bik_daily_variations | intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Cummulative Variations</td>

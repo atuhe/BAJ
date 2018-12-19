@@ -2,10 +2,13 @@ import logging
 from django.views.generic import CreateView, TemplateView, ListView
 from django.http import JsonResponse
 from django.db.models import Sum
+from django.urls import reverse_lazy
 from rest_framework import status
-from fuelcard.forms import ReportForm, TankForm
-from fuelcard.models import Pump, Report, Tank
+from fuelcard.forms import ReportForm, TankForm, ItemSalesForm
+from fuelcard.models import Pump, Report, Tank, ItemSales
 from fuelcard.serializers import ReportSerializer
+
+from fuelcard.utils import NetSales, ProductRatings
 
 from datetime import datetime
 
@@ -175,3 +178,55 @@ class MeterReadingsView(ListView, CreateView):
                 return JsonResponse(content, status=status.HTTP_403_FORBIDDEN)
 
         return super().post(request, *args, **kwargs)
+
+
+class SalesReport(TemplateView):
+    template_name = 'sales.html'
+    net_sales_object = NetSales(datetime.today())
+    product_ratings = ProductRatings(datetime.today())
+
+    def get_context_data(self, **kwargs):
+        self.object = None
+        context = super(SalesReport, self).get_context_data(**kwargs)
+        pms_amount = self.net_sales_object.pms() * self.product_ratings.pms()
+        context['pms_ratings'] = self.product_ratings.pms()
+        context['pms_amount'] = pms_amount
+
+        ago_amount = self.net_sales_object.ago() * self.product_ratings.ago()
+        context['ago_ratings'] = self.product_ratings.ago()
+        context['ago_amount'] = ago_amount
+
+        bik_amount = self.net_sales_object.bik() * self.product_ratings.bik()
+        context['bik_amount'] = bik_amount
+        context['bik_ratings'] = self.product_ratings.bik()
+
+        fuel_sales = pms_amount + ago_amount + bik_amount
+        other_sales = self.net_sales_object.total_other_sales()
+        gross_sales = fuel_sales + other_sales
+        context['gross_sales'] = gross_sales
+
+        context['pms'] = self.net_sales_object.pms()
+        context['ago'] = self.net_sales_object.ago()
+        context['bik'] = self.net_sales_object.bik()
+
+        sales_list = ItemSales.objects.filter(date_created__date=datetime.today()).order_by('-id')
+        context['total_item_sales'] = self.net_sales_object.total_other_sales()
+        context['object_list'] = sales_list
+        return context
+
+
+class Sales(CreateView):
+    template_name = 'sales_item.html'
+    form_class = ItemSalesForm
+    success_url = reverse_lazy('sales')
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)

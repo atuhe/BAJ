@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 from django.conf import settings
-from fuelcard.views import HomeView, PumpView, ReadingView, TankReadingsView, MeterReadingsView
+from fuelcard.views import HomeView, PumpView, ReadingView, TankReadingsView, MeterReadingsView, SalesReport, Sales
 from django.conf.urls.static import static
 
 admin.site.site_header = "BAJ System admin"
@@ -30,5 +30,7 @@ urlpatterns = [
     path('pumps/', PumpView.as_view(), name='pumps'),
     path('readings/tank/', TankReadingsView.as_view(), name='tank_readings'),
     path('readings/meter/', MeterReadingsView.as_view(), name='meter_readings'),
+    path('sales/', SalesReport.as_view(), name='sales'),
+    path('sales/other/', Sales.as_view(), name='other_sales'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

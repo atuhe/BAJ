@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+    <div class="advanced-form-area mg-b-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="sparkline11-list shadow-reset mg-t-30">
+                        <div class="sparkline11-hd">
+                            <div class="main-sparkline11-hd">
+                                <h1>Add Other Sales</h1>
+                            </div>
+                        </div>
+                        <div class="sparkline11-graph">
+                            <div class="input-knob-dial-wrap">
+                                <div class="row">
+                                    <form action="{% url 'other_sales' %}" method="post">
+                                        {% csrf_token %}
+                                    <div class="form-group-inner">
+                                        <label>Product</label>
+                                        {{ form.product }}
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <label>Quantity</label>
+                                        {{ form.quantity }}
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <label>Unit Price</label>
+                                        {{ form.unit_price }}
+                                    </div>
+                                    <button type="submit" id="salesButton" class="btn btn-primary btn-sm">Add</button>
+                                    <button id="cancelBtn" type="reset" class="btn btn-dark btn-sm">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{#                <form action="{% url 'other_sales' %}" method="post">#}
+{#                    #}
+{#                    {{ form.as_p }}#}
+{#                    <input type="submit" value="Submit">#}
+{#                </form>#}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

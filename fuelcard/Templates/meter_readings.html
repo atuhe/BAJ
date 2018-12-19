@@ -106,11 +106,11 @@
                                                     <td></td>
                                                     <td>{{ report.date_created|naturaltime }}</td>
                                                     <td>{{ report.pump }}</td>
-                                                    <td>{{ report.opening_reading }}</td>
-                                                    <td>{{ report.closing_reading }}</td>
-                                                    <td>{{ report.meter_movement }}</td>
-                                                    <td>{{ report.transfers }}</td>
-                                                    <td>{{ report.net_sales }}</td>
+                                                    <td>{{ report.opening_reading | intcomma }}</td>
+                                                    <td>{{ report.closing_reading | intcomma }}</td>
+                                                    <td>{{ report.meter_movement | intcomma }}</td>
+                                                    <td>{{ report.transfers | intcomma }}</td>
+                                                    <td>{{ report.net_sales | intcomma }}</td>
                                                 </tr>
                                                 {% endfor %}
                                                 </tbody>
