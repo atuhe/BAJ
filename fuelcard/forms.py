@@ -110,3 +110,33 @@ class TankForm(ModelForm):
                 }
             )
         }
+
+
+class ItemSalesForm(ModelForm):
+    class Meta:
+        model = ItemSales
+        fields = ['product', 'quantity', 'unit_price']
+        widgets = {
+            'product': TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'product',
+                    'required': 'required'
+                }
+            ),
+            'quantity': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'quantity',
+                    'required': 'required'
+                }
+            ),
+            'unit_price': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'unit_price',
+                    'required': 'required'
+                }
+            )
+        }
+

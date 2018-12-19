@@ -10,10 +10,16 @@ class Pump(models.Model):
 
     pump_name = models.CharField(choices=CHOICES_PUMP_NAME, max_length=20)
     pump_category = models.CharField(choices=CHOICES_PRODUCT_TYPE, max_length=20)
-    station_name = models.CharField(max_length=20)
+    station_name = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         return self.pump_name
+
+
+class Ratings(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    pump = models.ForeignKey(Pump, on_delete=models.CASCADE)
+    rate = models.FloatField()
 
 
 class Report(models.Model):
@@ -46,3 +52,14 @@ class Tank(models.Model):
 
     def __str__(self):
         return self.product_category
+
+
+class ItemSales(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    product = models.CharField(max_length=30)
+    quantity = models.IntegerField()
+    unit_price = models.FloatField()
+
+    def value(self):
+        return self.unit_price * self.quantity
+

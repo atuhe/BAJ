@@ -109,10 +109,10 @@
                                                     <td></td>
                                                     <td>{{ reading.date_created|naturaltime }}</td>
                                                     <td>{{ reading.product_category }}</td>
-                                                    <td>{{ reading.opening_stock }}</td>
-                                                    <td>{{ reading.closing_stock }}</td>
-                                                    <td>{{ reading.product_received }}</td>
-                                                    <td>{{ reading.product_returned }}</td>
+                                                    <td>{{ reading.opening_stock | intcomma }}</td>
+                                                    <td>{{ reading.closing_stock | intcomma }}</td>
+                                                    <td>{{ reading.product_received | intcomma }}</td>
+                                                    <td>{{ reading.product_returned | intcomma }}</td>
                                                 </tr>
                                                 {% endfor %}
                                                 </tbody>

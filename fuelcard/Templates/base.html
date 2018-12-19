@@ -152,7 +152,7 @@
                         </li>
                         <li><a data-toggle="tab" href="#Clients">Clients</a>
                         </li>
-                        <li><a data-toggle="tab" href="#CreditSales">Credit Sales</a>
+                        <li><a data-toggle="tab" href="#Sales">Sales</a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
@@ -184,7 +184,7 @@
                                 </li>
                                 <li><a href="">Meter</a>
                                 </li>
-                                <li><a href="">Sales</a>
+                                <li><a href="{% url 'sales' %}">Sales</a>
                                 </li>
                             </ul>
                         </div>
@@ -196,9 +196,11 @@
                                 </li>
                             </ul>
                         </div>
-                        <div id="CreditSales" class="tab-pane tab-custon-menu-bg animated flipInX">
+                        <div id="Sales" class="tab-pane tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="">View</a>
+                                <li><a href="">Credit Sales</a>
+                                </li>
+                                <li><a href="{% url 'other_sales' %}">Other Sales</a>
                                 </li>
                             </ul>
                         </div>
@@ -208,6 +210,12 @@
         </div>
     </div>
     <!-- Main Menu area End-->
+<div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Warning!</strong> You need to update the fuel daily ratings to be able to make computations! Contact the Admin.
+</div>
     {% block content %}
 
     {% endblock %}
