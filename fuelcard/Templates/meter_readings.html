@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <!-- Breadcome start-->
+    <div class="breadcome-area mg-t-40 mg-b-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcome-list shadow-reset">
+                        <div class="breadcome-heading">
+                            <h2>Meter Control Panel</h2>
+                        </div>
+                        <ul class="breadcome-menu">
+                            <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                            </li>
+                            <li><span class="bread-blod">Meter Readings</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcome End-->
+    <div class="advanced-form-area mg-b-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="sparkline11-list shadow-reset mg-t-30">
+                        <div class="sparkline11-hd">
+                            <div class="main-sparkline11-hd">
+                                <h1>Add meter Readings</h1>
+                                <div class="sparkline11-outline-icon">
+                                    <span class="sparkline11-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                                    <span><i class="fa fa-wrench"></i></span>
+                                    <span class="sparkline11-collapse-close"><i class="fa fa-times"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sparkline11-graph">
+                            <div class="input-knob-dial-wrap">
+                                <div class="row">
+                                    <form action="meter_readings.html">
+                                    <div class="col-lg-12">
+                                        <div class="chosen-select-single mg-b-20">
+                                            <label>Select Pump</label>
+                                            {{ form.pump }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <label>Opening Reading</label>
+                                        {{ form.opening_reading }}
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <label>Closing Reading</label>
+                                        {{ form.closing_reading }}
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <label>Transfers</label>
+                                        {{ form.transfers }}
+                                    </div>
+                                    <button type="button" id="addBtn" class="btn btn-primary btn-sm" onclick="addButton();">Add</button>
+                                    <button id="cancelBtn" type="reset" class="btn btn-dark btn-sm">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="sparkline11-list shadow-reset mg-t-30">
+                        <div class="sparkline11-hd">
+                            <div class="main-sparkline11-hd">
+                                <h1>Meter Readings</h1>
+                            </div>
+                        </div>
+                        <div class="sparkline11-graph">
+                            <div class="input-knob-dial-wrap">
+                                <div class="row">
+                                    <div class="sparkline13-graph">
+                                        <div class="datatable-dashv1-list custom-datatable-overright">
+                                            <div id="toolbar">
+                                                <select class="form-control">
+                                                    <option value="">Export Basic</option>
+                                                    <option value="all">Export All</option>
+                                                    <option value="selected">Export Selected</option>
+                                                </select>
+                                            </div>
+                                            <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                                <thead>
+                                                <tr>
+                                                    <th data-field="state" data-checkbox="true"></th>
+                                                    <th data-field="date" data-editable="true">Time</th>
+                                                    <th data-field="pump" data-editable="true">Pump</th>
+                                                    <th data-field="opening_reading" data-editable="true">Opening</th>
+                                                    <th data-field="closing_reading" data-editable="true">Closing</th>
+                                                    <th data-field="meter_movement">Meter Movement</th>
+                                                    <th data-field="transfers">Transfers</th>
+                                                    <th data-field="net_sales">Net Sales</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for report in object_list %}
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{ report.date_created|naturaltime }}</td>
+                                                    <td>{{ report.pump }}</td>
+                                                    <td>{{ report.opening_reading | intcomma }}</td>
+                                                    <td>{{ report.closing_reading | intcomma }}</td>
+                                                    <td>{{ report.meter_movement | intcomma }}</td>
+                                                    <td>{{ report.transfers | intcomma }}</td>
+                                                    <td>{{ report.net_sales | intcomma }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

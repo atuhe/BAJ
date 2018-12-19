@@ -1,5 +1,5 @@
 from django.contrib import admin
-from fuelcard.models import Pump
+from fuelcard.models import Pump, Ratings
 
 
 class PumpAdmin(admin.ModelAdmin):
@@ -7,4 +7,9 @@ class PumpAdmin(admin.ModelAdmin):
     ordering = ['pump_name']
 
 
+class RatingsAdmin(admin.ModelAdmin):
+    list_display = ['rate']
+
+
 admin.site.register(Pump, PumpAdmin)
+admin.site.register(Ratings, RatingsAdmin)

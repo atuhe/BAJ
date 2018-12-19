@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <!-- Breadcome start-->
+    <div class="breadcome-area mg-t-40 mg-b-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcome-list shadow-reset">
+                        <div class="breadcome-heading">
+                            <h2>Tank Control Panel</h2>
+                        </div>
+                        <ul class="breadcome-menu">
+                            <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                            </li>
+                            <li><span class="bread-blod">Tank Readings</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcome End-->
+    <div class="advanced-form-area mg-b-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="sparkline11-list shadow-reset mg-t-30">
+                        <div class="sparkline11-hd">
+                            <div class="main-sparkline11-hd">
+                                <h1>Add tank Readings</h1>
+                                <div class="sparkline11-outline-icon">
+                                    <span class="sparkline11-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                                    <span><i class="fa fa-wrench"></i></span>
+                                    <span class="sparkline11-collapse-close"><i class="fa fa-times"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sparkline11-graph">
+                            <div class="input-knob-dial-wrap">
+                                <div class="row">
+                                    <form action="tank_readings.html">
+                                        <div class="col-lg-12">
+                                            <div class="chosen-select-single mg-b-20">
+                                                <label>Select Product</label>
+                                                {{ form.product_category }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <label>Opening Dip Stock</label>
+                                            {{ form.opening_stock }}
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <label>Closing Dip Stock</label>
+                                            {{ form.closing_stock }}
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <label>Product Received</label>
+                                            {{ form.product_received }}
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <label>Product Returned</label>
+                                            {{ form.product_returned }}
+                                        </div>
+                                        <button type="button" id="addTankReadingsBtn" class="btn btn-primary btn-sm" onclick="tankReadingsBtn();">Add</button>
+                                        <button id="cancelBtn" type="reset" class="btn btn-dark btn-sm">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="sparkline11-list shadow-reset mg-t-30">
+                        <div class="sparkline11-hd">
+                            <div class="main-sparkline11-hd">
+                                <h1>Tank Readings</h1>
+                            </div>
+                        </div>
+                        <div class="sparkline11-graph">
+                            <div class="input-knob-dial-wrap">
+                                <div class="row">
+                                    <div class="sparkline13-graph">
+                                        <div class="datatable-dashv1-list custom-datatable-overright">
+                                            <div id="toolbar">
+                                                <select class="form-control">
+                                                    <option value="">Export Basic</option>
+                                                    <option value="all">Export All</option>
+                                                    <option value="selected">Export Selected</option>
+                                                </select>
+                                            </div>
+                                            <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                                <thead>
+                                                <tr>
+                                                    <th data-field="state" data-checkbox="true"></th>
+                                                    <th data-field="time" data-editable="true">Time</th>
+                                                    <th data-field="product" data-editable="true">Product</th>
+                                                    <th data-field="opening_stock" data-editable="true">Opening Stock</th>
+                                                    <th data-field="closing_stock" data-editable="true">Closing Stock</th>
+                                                    <th data-field="product_received">Received</th>
+                                                    <th data-field="product_returned">RTT</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for reading in object_list %}
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{ reading.date_created|naturaltime }}</td>
+                                                    <td>{{ reading.product_category }}</td>
+                                                    <td>{{ reading.opening_stock | intcomma }}</td>
+                                                    <td>{{ reading.closing_stock | intcomma }}</td>
+                                                    <td>{{ reading.product_received | intcomma }}</td>
+                                                    <td>{{ reading.product_returned | intcomma }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
