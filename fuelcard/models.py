@@ -26,7 +26,7 @@ class Report(models.Model):
     net_sales = models.FloatField()
 
     def __str__(self):
-        return self.pump
+        return self.pump.pump_name
 
 
 class Tank(models.Model):

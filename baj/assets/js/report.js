@@ -29,7 +29,7 @@ function saveReport(formData) {
     let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
     $.ajax({
         type: "POST",
-        url: "/readings/",
+        url: "/readings/meter/",
         dataType: "json",
             data: {
                 pump: formData.pump,

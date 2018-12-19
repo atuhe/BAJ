@@ -161,7 +161,7 @@
                                             <td>{{ pms.tank_sales }}</td>
                                             <td>{{ truck.tank_sales }}</td>
                                             <td>{{ ago.tank_sales }}</td>
-                                            <td>{{ bik.tank_sales }}</td>
+                                            <td>{{ bik.tank_sales|intcomma }}</td>
                                         </tr>
                                         <tr>
                                             <td>Meter Sales</td>
@@ -172,10 +172,10 @@
                                         </tr>
                                         <tr>
                                             <td>Daily Variations</td>
+                                            <td>{{ pms_daily_variations }}</td>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ ago_daily_variations }}</td>
+                                            <td>{{ bik_daily_variations }}</td>
                                         </tr>
                                         <tr>
                                             <td>Cummulative Variations</td>
