@@ -1,6 +1,7 @@
 import logging
 from django.views.generic import CreateView, TemplateView, ListView
 from django.http import JsonResponse
+from django.db.models import Sum
 from django.urls import reverse_lazy
 from rest_framework import status
 from fuelcard.forms import ReportForm, TankForm, ItemSalesForm

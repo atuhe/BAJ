@@ -62,7 +62,7 @@ class ProductRatings:
 
     def pms(self):
         try:
-            ratings = Ratings.objects.get(date_created__date=self.date, pump__pump_category='Petrol')
+            ratings = Ratings.objects.filter(date_created__date=self.date, pump__pump_category='Petrol').latest('id')
             return ratings.rate
         except Exception as e:
             logging.error(e)
@@ -70,7 +70,7 @@ class ProductRatings:
 
     def ago(self):
         try:
-            ratings = Ratings.objects.get(date_created__date=self.date, pump__pump_category='Diesel')
+            ratings = Ratings.objects.filter(date_created__date=self.date, pump__pump_category='Diesel').latest('id')
             return ratings.rate
         except Exception as e:
             logging.error(e)
@@ -78,7 +78,7 @@ class ProductRatings:
 
     def bik(self):
         try:
-            ratings = Ratings.objects.get(date_created__date=self.date, pump__pump_category='Kerosene')
+            ratings = Ratings.objects.filter(date_created__date=self.date, pump__pump_category='Kerosene').latest('id')
             return ratings.rate
         except Exception as e:
             logging.error(e)
